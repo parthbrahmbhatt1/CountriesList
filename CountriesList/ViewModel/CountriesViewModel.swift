@@ -26,9 +26,9 @@ class CountriesViewModel {
     }
     
     func fetchCountries() async {
-        let urlString = "https://gist.githubusercontent.com/peymano-wmt/32dcb892b06648910ddd40406e37fdab/raw/db25946fd77c5873b0303b858e861ce724e0dcd0/countries.json"
+        let urlString = Constants.API.url
         guard let url = URL(string: urlString) else {
-            onError?("Invalid URL")
+            onError?(Constants.API.invalidURL)
             return
         }
         do {
@@ -38,7 +38,7 @@ class CountriesViewModel {
             self.onDataChanged?()
             
         } catch {
-            self.onError?("Failed to fetch countries: \(error.localizedDescription)")
+            self.onError?("\(Constants.API.failedToFetchCountries) \(error.localizedDescription)")
         }
     }
     

@@ -14,10 +14,10 @@ class CountryListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Countries"
+        title = Constants.CountryListView.countries
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Search countries or capitals"
+        searchController.searchBar.placeholder = Constants.CountryListView.searchCountriesOrCapitals
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
@@ -34,8 +34,8 @@ class CountryListViewController: UITableViewController {
     }
     
     func showError(_ message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let alert = UIAlertController(title: Constants.CountryListView.error, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Constants.CountryListView.ok, style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     
@@ -50,14 +50,14 @@ class CountryListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if viewModel.isFiltering && viewModel.filteredCountries.isEmpty {
-            let cell = UITableViewCell(style: .default, reuseIdentifier: "NoDataCell")
-            cell.textLabel?.text = "No data found"
+            let cell = UITableViewCell(style: .default, reuseIdentifier: Constants.CountryListView.noDataCell)
+            cell.textLabel?.text = Constants.CountryListView.noDataFound
             cell.textLabel?.textAlignment = .center
             cell.selectionStyle = .none
             return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell", for: indexPath) as! CountryCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.CountryListView.countryCell, for: indexPath) as! CountryCell
         let country: Country
         if viewModel.isFiltering {
             country = viewModel.filteredCountries[indexPath.row]
@@ -73,7 +73,7 @@ class CountryListViewController: UITableViewController {
 
 extension CountryListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        let searchText = searchController.searchBar.text ?? ""
+        let searchText = searchController.searchBar.text ?? Constants.CountryListView.emptyString
         viewModel.filter(with: searchText)
     }
 }
