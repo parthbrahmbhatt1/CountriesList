@@ -37,6 +37,20 @@
 			);
 			target = 17AD7BC12E19BBD2007C089E /* CountriesList */;
 		};
+		17AD7C262E19C4BF007C089E /* Exceptions for "CountriesListTests" folder in "CountriesListTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MockCountryService.swift,
+			);
+			target = 17AD7BD72E19BBD6007C089E /* CountriesListTests */;
+		};
+		17AD7C282E19C4C3007C089E /* Exceptions for "CountriesListTests" folder in "CountriesList" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				MockCountryService.swift,
+			);
+			target = 17AD7BC12E19BBD2007C089E /* CountriesList */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -50,6 +64,10 @@
 		};
 		17AD7BDB2E19BBD6007C089E /* CountriesListTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				17AD7C282E19C4C3007C089E /* Exceptions for "CountriesListTests" folder in "CountriesList" target */,
+				17AD7C262E19C4BF007C089E /* Exceptions for "CountriesListTests" folder in "CountriesListTests" target */,
+			);
 			path = CountriesListTests;
 			sourceTree = "<group>";
 		};

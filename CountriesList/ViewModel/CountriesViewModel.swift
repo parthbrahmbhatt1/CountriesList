@@ -14,6 +14,11 @@ class CountriesViewModel {
     private(set) var filteredCountries: [Country] = []
     var onDataChanged: (() -> Void)?
     var onError: ((String) -> Void)?
+    private let service: CountryServiceProtocol
+    
+    init(service: CountryServiceProtocol = CountryService()) {
+        self.service = service
+    }
     
     var isFiltering: Bool = false
     
@@ -26,14 +31,8 @@ class CountriesViewModel {
     }
     
     func fetchCountries() async {
-        let urlString = Constants.API.url
-        guard let url = URL(string: urlString) else {
-            onError?(Constants.API.invalidURL)
-            return
-        }
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let decoded = try JSONDecoder().decode([Country].self, from: data)
+            let decoded = try await service.fetchCountries()
             self.countries = decoded
             self.onDataChanged?()
             
