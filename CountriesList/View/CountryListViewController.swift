@@ -38,8 +38,10 @@ class CountryListViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: Constants.CountryListView.ok, style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+}
+
+extension CountryListViewController {
     
-    // TableView DataSource methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if viewModel.isFiltering {
             return viewModel.filteredCountries.isEmpty ? 1 : viewModel.filteredCountries.count
@@ -64,9 +66,7 @@ class CountryListViewController: UITableViewController {
         } else {
             country = viewModel.countries[indexPath.row]
         }
-        cell.nameRegionLabel.text = "\(country.name), \(country.region)"
-        cell.codeLabel.text = country.code
-        cell.capitalLabel.text = country.capital
+        cell.configure(with: country)
         return cell
     }
 }

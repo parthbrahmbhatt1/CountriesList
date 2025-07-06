@@ -49,10 +49,11 @@ class CountriesViewModel {
         } else {
             isFiltering = true
             filteredCountries = countries.filter {
-                $0.name.lowercased().contains(lowercased) ||
-                $0.capital.lowercased().contains(lowercased)
+                ($0.name.isEmpty ? Constants.CountryListView.na.lowercased() : $0.name.lowercased()).contains(lowercased) ||
+                ($0.capital.isEmpty ? Constants.CountryListView.na.lowercased() : $0.capital.lowercased()).contains(lowercased)
             }
         }
         onDataChanged?()
     }
+
 }

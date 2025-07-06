@@ -23,5 +23,6 @@ enum Constants {
         static let noDataFound = "No data found"
         static let countryCell = "CountryCell"
         static let emptyString = ""
+        static let na = "N/A"
     }
 }
